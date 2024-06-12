@@ -39,15 +39,15 @@ pipeline {
             }
         }
 
-        // stage('Deploy'){
-        //     steps{
-        //         sh """
-        //             cd terraform
-        //             terraform plan
-        //         """
-        //     }
-        // }
-    }
+        stage('Deploy'){
+             steps{
+                 sh """
+                     cd terraform
+                     terraform apply -auto-approve -var="app_version=${params.appVersion}"
+                 """
+             }
+         }
+    } 
     post { 
         always { 
             echo 'I will always say Hello again!'
